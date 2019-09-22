@@ -1,26 +1,27 @@
 import React from 'react';
+import { connect } from 'react-redux'
+
 import logo from './logo.svg';
 import './App.css';
 
-function App() {
+function App({ auth }) {
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          Capturando erros com Redux e Redux Saga no Sentry
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <p>
+          <button type="button" onClick={auth}>Redux Error</button>
+        </p>
       </header>
     </div>
-  );
+  )
 }
 
-export default App;
+const mapDispatchToProps = dispatch => ({
+  auth: () => dispatch({ type: 'AUTH' }),
+})
+
+export default connect(null, mapDispatchToProps)(App)
